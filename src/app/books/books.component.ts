@@ -27,9 +27,11 @@ export class BooksComponent implements OnInit {
       return;
     }
 
-    this.bookService.addBook({ title, author } as IBook).subscribe(newBook => {
-      console.log(`Adding => Author Name: ${author}, Book Title: ${title}`);
-      this.books.push(newBook);
-    });
+    this.bookService
+      .addBook({ id: 0, title, author } as IBook)
+      .subscribe(newBook => {
+        console.log(`Adding => Author Name: ${author}, Book Title: ${title}`);
+        this.books.push(newBook);
+      });
   }
 }

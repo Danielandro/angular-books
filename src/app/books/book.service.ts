@@ -18,7 +18,11 @@ export class BookService {
 
   // ADD a new book & its author
   addBook(book: IBook): Observable<any> {
-    book.id = 4;
+    // generate and set id on new book
+    this.getBooks().subscribe(books => {
+      book.id = this.genId(books);
+    });
+
     return this.http
       .post(this.bookUrl, book)
       .pipe(catchError(this.handleError));
@@ -36,5 +40,11 @@ export class BookService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+  }
+
+  private genId(books: IBook[]): number {
+    // if there are no books return 1
+    // otherwise find highest id and add 1
+    return books.length > 0 ? Math.max(...books.map(book => book.id)) : 1;
   }
 }

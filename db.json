@@ -1,0 +1,19 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "thinking fast and slow",
+      "author": "daniel dahneman"
+    },
+    {
+      "id": 2,
+      "title": "the witches",
+      "author": "roald dahl"
+    },
+    {
+      "id": 3,
+      "title": "the alchemist",
+      "author": "paolo coelho"
+    }
+  ]
+}

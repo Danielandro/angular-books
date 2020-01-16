@@ -1,29 +1,16 @@
 import { Injectable } from "@angular/core";
 import IBook from "./book";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class BookService {
-  constructor() {}
+  bookUrl: string = "http://localhost:3000/books";
+  constructor(private http: HttpClient) {}
 
-  getBooks(): IBook[] {
-    return [
-      {
-        id: 1,
-        title: "Thinking fast and slow",
-        author: "Daniel Kahneman"
-      },
-      {
-        id: 2,
-        title: "The BFG",
-        author: "Roald Dahl"
-      },
-      {
-        id: 3,
-        title: "The Alchemist",
-        author: "Paolo Coelho"
-      }
-    ];
+  getBooks(): Observable<IBook[]> {
+    return this.http.get<IBook[]>(this.bookUrl);
   }
 }

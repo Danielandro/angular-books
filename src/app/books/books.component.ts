@@ -17,4 +17,19 @@ export class BooksComponent implements OnInit {
       this.books = books;
     });
   }
+
+  add(title: string, author: string): void {
+    // make sure fields are not blank
+    title = title.trim().toLocaleLowerCase();
+    author = author.trim().toLocaleLowerCase();
+
+    if (!title || !author) {
+      return;
+    }
+
+    this.bookService.addBook({ title, author } as IBook).subscribe(newBook => {
+      console.log(`Adding => Author Name: ${author}, Book Title: ${title}`);
+      this.books.push(newBook);
+    });
+  }
 }

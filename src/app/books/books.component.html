@@ -1,7 +1,28 @@
 <h1>My Books</h1>
+<!-- Form to add a new book -->
+<label
+  >Book Title:
+  <input type="text" #bookTitle aria-required="true" required />
+</label>
+<br />
+<label
+  >Author Name:
+  <input type="text" #authorName aria-required="true" required /> </label
+><br />
+<button
+  (click)="
+    add(bookTitle.value, authorName.value);
+    bookTitle.value = '';
+    authorName.value = ''
+  "
+>
+  Add Book
+</button>
 
 <div class="card">
   <ul *ngFor="let book of books" class="books list-group">
-    <li class="book list-group-item">{{ book.title }} by {{ book.author }}</li>
+    <li class="book list-group-item">
+      {{ book.title | titlecase }} by {{ book.author | titlecase }}
+    </li>
   </ul>
 </div>

@@ -62,4 +62,8 @@ export class BooksComponent implements OnInit {
       this.filteredBooks = filteredBooks;
     });
   }
+
+  getDetails(id: number) {
+    console.log("Clicked on book with ID: ", id);
+  }
 }

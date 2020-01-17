@@ -2,10 +2,10 @@
   <label
     >Book search:
     <!-- Drop down to choose search option -->
-    <select #searchBy (change)="onChange(searchBy.value)">
+    <select #searchBy (change)="onSearchByChange(searchBy.value)">
       <option value="title">by title</option>
       <option value="author">by author</option>
     </select>
-    <input #val (input)="onInput(val.value)" type="text" />
+    <input (input)="onInput()" [(ngModel)]="term" type="text" />
   </label>
 </div>

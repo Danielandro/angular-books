@@ -16,14 +16,14 @@ export class BookSearchComponent implements OnInit {
   ngOnInit() {}
 
   // emit event to parent as user types in the search field
-  onInput(term: string) {
-    this.term = term;
+  onInput() {
     this.searchInput.emit({ term: this.term, searchBy: this.searchBy });
   }
 
   // emit to parent when user changes search by option
-  onChange(searchBy: string) {
+  onSearchByChange(searchBy: string) {
     this.searchBy = searchBy;
-    this.searchByOption.emit({ term: this.term, searchBy: this.searchBy });
+    this.term = "";
+    this.onInput(); // probably won't need parameter
   }
 }

@@ -20,6 +20,7 @@ export class BooksComponent implements OnInit {
     });
   }
 
+  // add a new book
   add(title: string, author: string): void {
     // convert strings to lower case
     title = title.trim().toLocaleLowerCase();
@@ -39,6 +40,7 @@ export class BooksComponent implements OnInit {
       });
   }
 
+  // when user starts entering a search
   onSearchInput(searchParams: { term: string; searchBy: string }) {
     // check if term is an empty string
     if (!searchParams.term.trim()) {
@@ -46,21 +48,17 @@ export class BooksComponent implements OnInit {
     }
     // convert to lowercase
     searchParams.term = searchParams.term.toLocaleLowerCase();
-
     // get + set filteredBooks
-    this.bookService.searchBooks(searchParams).subscribe(filteredBooks => {
-      console.log(
-        `Searching For: ${searchParams.term} by ${searchParams.searchBy}`
-      );
-      this.filteredBooks = filteredBooks;
-    });
+    this.search(searchParams);
   }
 
+  // when user changes search by option
   onSearchByOption(searchParams: { term: string; searchBy: string }) {
+    this.search(searchParams);
+  }
+
+  private search(searchParams: { term: string; searchBy: string }) {
     this.bookService.searchBooks(searchParams).subscribe(filteredBooks => {
-      console.log(
-        `Searching For: ${searchParams.term} by ${searchParams.searchBy}`
-      );
       this.filteredBooks = filteredBooks;
     });
   }

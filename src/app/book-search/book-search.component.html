@@ -1,10 +1,10 @@
 <div class="book-search">
   <label
-    >Book search (by title)
+    >Book search:
     <!-- Drop down to choose search option -->
     <select #searchBy (change)="onChange(searchBy.value)">
-      <option value="title">title</option>
-      <option value="author">author</option>
+      <option value="title">by title</option>
+      <option value="author">by author</option>
     </select>
     <input #val (input)="onInput(val.value)" type="text" />
   </label>

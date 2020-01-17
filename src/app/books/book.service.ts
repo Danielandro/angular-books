@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import IBook from "./book";
 import { Observable, throwError, of } from "rxjs";
-import { catchError, filter, map, tap } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
@@ -28,22 +28,27 @@ export class BookService {
       .pipe(catchError(this.handleError));
   }
 
-  // SEARCH for books
+  // SEARCH for books by title or author
   searchBooks(searchParams: {
     term: string;
     searchBy: string;
   }): Observable<IBook[]> {
-    let term = searchParams.term;
-    let searchBy = searchParams.searchBy;
-
     return this.getBooks().pipe(
-      tap(_ => console.log(`Fetching search results for ${term}`)),
+      tap(_ =>
+        console.log(
+          `Searching For: ${searchParams.term} by ${searchParams.searchBy}`
+        )
+      ),
       map(books =>
-        books.filter(book => book[`${searchBy}`].indexOf(term) !== -1)
+        books.filter(
+          book =>
+            book[`${searchParams.searchBy}`].indexOf(searchParams.term) !== -1
+        )
       )
     );
   }
 
+  // error handling callback
   handleError(err: HttpErrorResponse) {
     let errorMessage: string;
 
@@ -58,6 +63,7 @@ export class BookService {
     return throwError(errorMessage);
   }
 
+  // generate the next unique book id
   private genId(books: IBook[]): number {
     // if there are no books return 1
     // otherwise find highest id and add 1

@@ -57,6 +57,11 @@ export class BooksComponent implements OnInit {
   }
 
   onSearchByOption(searchParams: { term: string; searchBy: string }) {
-    console.log("SearchBy: ", searchParams.searchBy);
+    this.bookService.searchBooks(searchParams).subscribe(filteredBooks => {
+      console.log(
+        `Searching For: ${searchParams.term} by ${searchParams.searchBy}`
+      );
+      this.filteredBooks = filteredBooks;
+    });
   }
 }

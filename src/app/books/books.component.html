@@ -1,5 +1,5 @@
 <h1>My Books</h1>
-<app-book-search></app-book-search>
+<app-book-search (searchInput)="onSearchInput($event)"></app-book-search>
 <!-- Form to add a new book -->
 <label
   >Book Title:
@@ -21,7 +21,7 @@
 </button>
 
 <div class="card">
-  <ul *ngFor="let book of books" class="books list-group">
+  <ul *ngFor="let book of filteredBooks" class="books list-group">
     <li class="book list-group-item">
       {{ book.title | titlecase }} by {{ book.author | titlecase }}
     </li>

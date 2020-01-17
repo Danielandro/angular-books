@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import IBook from "./book";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Observable, throwError, of } from "rxjs";
+import { catchError, filter, map, tap } from "rxjs/operators";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
@@ -26,6 +26,14 @@ export class BookService {
     return this.http
       .post(this.bookUrl, book)
       .pipe(catchError(this.handleError));
+  }
+
+  // SEARCH for books
+  searchBooks(searchTerm: string): Observable<IBook[]> {
+    return this.getBooks().pipe(
+      tap(_ => console.log(`Fetching search results for ${searchTerm}`)),
+      map(books => books.filter(book => book.title.indexOf(searchTerm) !== -1))
+    );
   }
 
   handleError(err: HttpErrorResponse) {

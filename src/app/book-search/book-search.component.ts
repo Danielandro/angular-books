@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
-import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-book-search",
@@ -7,9 +6,13 @@ import { ThrowStmt } from "@angular/compiler";
   styleUrls: ["./book-search.component.css"]
 })
 export class BookSearchComponent implements OnInit {
-  searchTerm: string = "fast";
-
+  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
+  userInput: string;
   constructor() {}
 
   ngOnInit() {}
+
+  onInput(val: string) {
+    this.searchInput.emit(val);
+  }
 }

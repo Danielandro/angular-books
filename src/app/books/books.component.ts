@@ -9,13 +9,14 @@ import { BookService } from "./book.service";
 })
 export class BooksComponent implements OnInit {
   books: IBook[];
-  term: string = "hold";
+  filteredBooks: IBook[];
 
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(books => {
       this.books = books;
+      this.filteredBooks = this.books;
     });
   }
 
@@ -39,6 +40,16 @@ export class BooksComponent implements OnInit {
   }
 
   onSearchInput(term: string) {
-    console.log("TERM from parent: ", term);
+    // check if term is an empty string
+    if (!term.trim()) {
+      this.filteredBooks = this.books;
+    }
+
+    // get + set filteredBooks
+    this.bookService.searchBooks(term).subscribe(filteredBooks => {
+      console.log("Searching For: ", term);
+      console.log("FILTERED Books", filteredBooks);
+      this.filteredBooks = filteredBooks;
+    });
   }
 }

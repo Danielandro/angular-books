@@ -1,3 +1,6 @@
-<div class="bookSearch">
-  <label>Book search <input type="text"/></label>
+<div class="book-search">
+  <label
+    >Book search (by title)
+    <input #val (input)="onInput(val.value)" type="text" />
+  </label>
 </div>

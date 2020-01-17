@@ -48,8 +48,10 @@ export class BooksComponent implements OnInit {
     searchParams.term = searchParams.term.toLocaleLowerCase();
 
     // get + set filteredBooks
-    this.bookService.searchBooks(searchParams.term).subscribe(filteredBooks => {
-      console.log("Searching For: ", searchParams.term);
+    this.bookService.searchBooks(searchParams).subscribe(filteredBooks => {
+      console.log(
+        `Searching For: ${searchParams.term} by ${searchParams.searchBy}`
+      );
       this.filteredBooks = filteredBooks;
     });
   }

@@ -10,7 +10,7 @@ export class BookSearchComponent implements OnInit {
   @Output() searchByOption: EventEmitter<{}> = new EventEmitter<{}>();
 
   term: string = "";
-  searchBy: string;
+  searchBy: string = "title";
   constructor() {}
 
   ngOnInit() {}

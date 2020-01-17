@@ -29,10 +29,18 @@ export class BookService {
   }
 
   // SEARCH for books
-  searchBooks(searchTerm: string): Observable<IBook[]> {
+  searchBooks(searchParams: {
+    term: string;
+    searchBy: string;
+  }): Observable<IBook[]> {
+    let term = searchParams.term;
+    let searchBy = searchParams.searchBy;
+
     return this.getBooks().pipe(
-      tap(_ => console.log(`Fetching search results for ${searchTerm}`)),
-      map(books => books.filter(book => book.title.indexOf(searchTerm) !== -1))
+      tap(_ => console.log(`Fetching search results for ${term}`)),
+      map(books =>
+        books.filter(book => book[`${searchBy}`].indexOf(term) !== -1)
+      )
     );
   }
 

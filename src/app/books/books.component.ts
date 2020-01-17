@@ -39,17 +39,22 @@ export class BooksComponent implements OnInit {
       });
   }
 
-  onSearchInput(term: string) {
+  onSearchInput(searchParams: { term: string; searchBy: string }) {
     // check if term is an empty string
-    if (!term.trim()) {
+    if (!searchParams.term.trim()) {
       this.filteredBooks = this.books;
     }
+    // convert to lowercase
+    searchParams.term = searchParams.term.toLocaleLowerCase();
 
     // get + set filteredBooks
-    this.bookService.searchBooks(term).subscribe(filteredBooks => {
-      console.log("Searching For: ", term);
-      console.log("FILTERED Books", filteredBooks);
+    this.bookService.searchBooks(searchParams.term).subscribe(filteredBooks => {
+      console.log("Searching For: ", searchParams.term);
       this.filteredBooks = filteredBooks;
     });
+  }
+
+  onSearchByOption(searchParams: { term: string; searchBy: string }) {
+    console.log("SearchBy: ", searchParams.searchBy);
   }
 }

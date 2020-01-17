@@ -1,6 +1,11 @@
 <div class="book-search">
   <label
     >Book search (by title)
+    <!-- Drop down to choose search option -->
+    <select #searchBy (change)="onChange(searchBy.value)">
+      <option value="title">title</option>
+      <option value="author">author</option>
+    </select>
     <input #val (input)="onInput(val.value)" type="text" />
   </label>
 </div>

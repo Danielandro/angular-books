@@ -1,5 +1,8 @@
 <h1>My Books</h1>
-<app-book-search (searchInput)="onSearchInput($event)"></app-book-search>
+<app-book-search
+  (searchInput)="onSearchInput($event)"
+  (searchByOption)="onSearchByOption($event)"
+></app-book-search>
 <!-- Form to add a new book -->
 <label
   >Book Title:

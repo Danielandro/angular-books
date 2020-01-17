@@ -6,13 +6,22 @@ import { Component, OnInit, EventEmitter, Output, Input } from "@angular/core";
   styleUrls: ["./book-search.component.css"]
 })
 export class BookSearchComponent implements OnInit {
-  @Output() searchInput: EventEmitter<string> = new EventEmitter<string>();
-  userInput: string;
+  @Output() searchInput: EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() searchByOption: EventEmitter<{}> = new EventEmitter<{}>();
+
+  term: string = "";
+  searchBy: string;
   constructor() {}
 
   ngOnInit() {}
 
-  onInput(val: string) {
-    this.searchInput.emit(val);
+  onInput(term: string) {
+    this.term = term;
+    this.searchInput.emit({ term: this.term, searchBy: this.searchBy });
+  }
+
+  onChange(searchBy: string) {
+    this.searchBy = searchBy;
+    this.searchByOption.emit({ term: this.term, searchBy: this.searchBy });
   }
 }

@@ -2,12 +2,15 @@
   <h2>Book Details</h2>
   <p>ID: {{ book.id }}</p>
   <div>
-    <label>Title: <input type="text" placeholder="book title" /> </label>
+    <label
+      >Title:
+      <input type="text" [value]="book.title" placeholder="book title" />
+    </label>
   </div>
   <div>
     <label
       >Author:
-      <input type="text" placeholder="book author" />
+      <input type="text" [value]="book.author" placeholder="book author" />
     </label>
   </div>
   <div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import IBook from "../books/book";
 import { ActivatedRoute } from "@angular/router";
 import { BookService } from "../books/book.service";
-
+import { Location } from "@angular/common";
 @Component({
   selector: "app-book-detail",
   templateUrl: "./book-detail.component.html",
@@ -12,6 +12,7 @@ export class BookDetailComponent implements OnInit {
   book: IBook;
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private bookService: BookService
   ) {}
 
@@ -26,6 +27,11 @@ export class BookDetailComponent implements OnInit {
       this.bookService.getBook(id).subscribe(book => (this.book = book));
     });
   }
+  // take user to previous page
+  goBack() {
+    this.location.back();
+  }
+
   save() {
     // call the books service method saveBook(author, title)
     // service should return an observable

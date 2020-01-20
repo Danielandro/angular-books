@@ -10,15 +10,21 @@ import { BookService } from "../books/book.service";
 })
 export class BookDetailComponent implements OnInit {
   book: IBook;
-  constructor(private route: ActivatedRoute, private bookService: BookService) {
-    console.log("Before Book", this.book);
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private bookService: BookService
+  ) {}
 
   ngOnInit() {
-    let id = +this.route.snapshot.paramMap.get("id");
-    this.bookService.getBook(id).subscribe(book => (this.book = book));
+    // USING SNAPSHOT
+    // let id = +this.route.snapshot.paramMap.get("id");
+    // this.bookService.getBook(id).subscribe(book => (this.book = book));
 
-    console.log("After Book", this.book);
+    // USING OBSERVABLE
+    this.route.paramMap.subscribe(params => {
+      let id = +params.get("id");
+      this.bookService.getBook(id).subscribe(book => (this.book = book));
+    });
   }
   save() {
     // call the books service method saveBook(author, title)

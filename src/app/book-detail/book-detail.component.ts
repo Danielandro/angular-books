@@ -33,7 +33,10 @@ export class BookDetailComponent implements OnInit {
   }
 
   save() {
+    this.book.author = this.book.author.toLocaleLowerCase();
+    this.book.title = this.book.title.toLocaleLowerCase();
     // call the books service method saveBook(author, title)
+    this.bookService.updateBook(this.book).subscribe(() => this.goBack());
     // service should return an observable
     // page should redirect back to home route (/books)
   }

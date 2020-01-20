@@ -56,6 +56,14 @@ export class BookService {
     );
   }
 
+  // UPDATE book details
+  updateBook(book: IBook): Observable<any> {
+    return this.http.patch(`${this.bookUrl}/${book.id}`, book).pipe(
+      tap(res => console.log("Update book response: ", res)),
+      catchError(this.handleError)
+    );
+  }
+
   // error handling callback
   handleError(err: HttpErrorResponse) {
     let errorMessage: string;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import IBook from "../books/book";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-book-detail",
@@ -12,7 +13,15 @@ export class BookDetailComponent implements OnInit {
     title: "crime and punishment",
     author: "Fyodor Dostoyevsky"
   };
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let id = +this.route.snapshot.paramMap.get("id");
+    this.book.id = id;
+  }
+  save() {
+    // call the books service method saveBook(author, title)
+    // service should return an observable
+    // page should redirect back to home route (/books)
+  }
 }

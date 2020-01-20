@@ -16,6 +16,14 @@ export class BookService {
     return this.http.get<IBook[]>(this.bookUrl);
   }
 
+  // GET a book
+  getBook(id: number): Observable<IBook> {
+    return this.http.get<IBook>(`${this.bookUrl}/${id}`).pipe(
+      tap(book => console.log(`Getting book: ${book.title}`)),
+      catchError(this.handleError)
+    );
+  }
+
   // ADD a new book & its author
   addBook(book: IBook): Observable<any> {
     // generate and set id on new book

@@ -15,8 +15,8 @@
   </div>
   <div>
     <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
-    <button>delete</button>
+    <button (click)="save(book)">save</button>
+    <button (click)="delete(book)">delete</button>
   </div>
 </div>
 <div *ngIf="!book">

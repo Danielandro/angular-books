@@ -64,6 +64,14 @@ export class BookService {
     );
   }
 
+  // DELETE a book
+  deleteBook(book: IBook): Observable<any> {
+    return this.http.delete(`${this.bookUrl}/${book.id}`).pipe(
+      tap(res => console.log("Book deleted: ", book.title)),
+      catchError(this.handleError)
+    );
+  }
+
   // error handling callback
   handleError(err: HttpErrorResponse) {
     let errorMessage: string;

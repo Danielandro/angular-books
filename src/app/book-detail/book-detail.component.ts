@@ -11,7 +11,7 @@ import { tap, switchMap, map } from "rxjs/operators";
 })
 export class BookDetailComponent implements OnInit {
   book: IBook;
-  pageTitle: string = "Book Details";
+  pageTitle: string;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -26,20 +26,15 @@ export class BookDetailComponent implements OnInit {
     // USING OBSERVABLE
     this.route.paramMap
       .pipe(
-        tap(console.log),
+        // switchMap returns result of internal observable
         switchMap(params => this.bookService.getBook(+params.get("id")))
-      )
+      ) // subscribing gives access to response from bookService observable
       .subscribe(book => {
         this.book = book;
         this.pageTitle = `${book.title} Details`;
       });
 
-    // switchMap(params => {
-    //   let id = params.get("id");
-    //   console.log(id);
-    //   return this.bookService.getBook(id);
-    // })
-
+    // Wrong way to do it - nested observables 😬
     // this.route.paramMap.subscribe(params => {
     //   let id = +params.get("id");
     //   this.bookService.getBook(id).subscribe(book => (this.book = book));

@@ -9,13 +9,15 @@ import { BooksComponent } from "./books/books.component";
 import { BookSearchComponent } from "./book-search/book-search.component";
 import { BookDetailComponent } from "./book-detail/book-detail.component";
 import { appRoutes } from "./routerConfig";
+import { BookEditComponent } from './book-edit/book-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     BookSearchComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    BookEditComponent
   ],
   imports: [
     BrowserModule,

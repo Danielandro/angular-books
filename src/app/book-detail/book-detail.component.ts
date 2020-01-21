@@ -10,6 +10,7 @@ import { Location } from "@angular/common";
 })
 export class BookDetailComponent implements OnInit {
   book: IBook;
+  pageTitle: string = "Book Details";
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -31,18 +32,5 @@ export class BookDetailComponent implements OnInit {
   goBack() {
     this.location.back();
     // this.router.navigate(["/books", book.id]); -> another way to do it
-  }
-
-  save(book: IBook) {
-    this.book.author = this.book.author.toLocaleLowerCase();
-    this.book.title = this.book.title.toLocaleLowerCase();
-    // call the books service method saveBook(author, title)
-    this.bookService.updateBook(book).subscribe(() => this.goBack());
-    // service should return an observable
-    // page should redirect back to home route (/books)
-  }
-
-  delete(book: IBook) {
-    this.bookService.deleteBook(book).subscribe(() => this.goBack());
   }
 }

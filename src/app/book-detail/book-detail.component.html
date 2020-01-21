@@ -1,22 +1,13 @@
-<h2>Book Details</h2>
+<h2>{{ pageTitle }}</h2>
 <div *ngIf="book" class="container">
-  <p>ID: {{ book.id }}</p>
-  <div>
-    <label
-      >Title:
-      <input type="text" [(ngModel)]="book.title" placeholder="book title" />
-    </label>
-  </div>
-  <div>
-    <label
-      >Author:
-      <input type="text" [(ngModel)]="book.author" placeholder="book author" />
-    </label>
+  <div class="book-details">
+    <p>ID: {{ book.id }}</p>
+    <p>Title: {{ book.title | titlecase }}</p>
+    <p>Author: {{ book.author | titlecase }}</p>
   </div>
   <div>
     <button (click)="goBack()">go back</button>
-    <button (click)="save(book)">save</button>
-    <button (click)="delete(book)">delete</button>
+    <button [routerLink]="['/books', book.id, 'edit']">update</button>
   </div>
 </div>
 <div *ngIf="!book">

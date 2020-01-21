@@ -32,12 +32,16 @@ export class BookEditComponent implements OnInit {
     this.book.author = this.book.author.toLocaleLowerCase();
     this.book.title = this.book.title.toLocaleLowerCase();
     // call the books service method saveBook(author, title)
-    // this.bookService.updateBook(book).subscribe(() => this.goBack());
+    this.bookService
+      .updateBook(book)
+      .subscribe(() => this.router.navigate(["/books", book.id]));
     // service should return an observable
     // page should redirect back to home route (/books)
   }
 
   delete(book: IBook) {
-    // this.bookService.deleteBook(book).subscribe(() => this.goBack());
+    this.bookService
+      .deleteBook(book)
+      .subscribe(() => this.router.navigate(["/books"]));
   }
 }

@@ -4,6 +4,7 @@ import { BookDetailComponent } from "./book-detail/book-detail.component";
 
 export const appRoutes: Routes = [
   { path: "books", component: BooksComponent },
-  { path: "detail/:id", component: BookDetailComponent },
-  { path: "", redirectTo: "books", pathMatch: "full" }
+  { path: "books/:id", component: BookDetailComponent },
+  { path: "", redirectTo: "books", pathMatch: "full" },
+  { path: "**", component: BooksComponent }
 ];

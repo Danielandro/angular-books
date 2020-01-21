@@ -30,6 +30,7 @@ export class BookDetailComponent implements OnInit {
   // take user to previous page
   goBack() {
     this.location.back();
+    // this.router.navigate(["/books", book.id]); -> another way to do it
   }
 
   save(book: IBook) {

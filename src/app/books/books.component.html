@@ -25,7 +25,7 @@
 
 <div class="card">
   <ul *ngFor="let book of filteredBooks" class="books list-group">
-    <a [routerLink]="['/detail', book.id]">
+    <a [routerLink]="['/books', book.id]">
       <li class="book list-group-item">
         {{ book.title | titlecase }} by {{ book.author | titlecase }}
       </li>

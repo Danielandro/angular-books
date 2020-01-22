@@ -30,8 +30,12 @@ export class BookDetailComponent implements OnInit {
         switchMap(params => this.bookService.getBook(+params.get("id")))
       ) // subscribing gives access to response from bookService observable
       .subscribe(book => {
-        this.book = book;
-        this.pageTitle = `${book.title} Details`;
+        if (book) {
+          this.book = book;
+          this.pageTitle = `${book.title} Details`;
+        } else {
+          this.pageTitle = "Unable to find resource";
+        }
       });
 
     // Wrong way to do it - nested observables 😬

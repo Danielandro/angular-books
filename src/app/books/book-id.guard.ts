@@ -27,10 +27,7 @@ export class BookIdGuard implements CanActivate {
       alert("Invalid book ID");
       this.router.navigate(["/books"]);
       return false;
-    } else {
-      return true;
     }
-
-    // check if a book in db.json has a matching id, if error, alert and send to books page
+    return true;
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import IBook from "./book";
-import { Observable, throwError, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { catchError, map, tap, find } from "rxjs/operators";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
@@ -19,10 +19,8 @@ export class BookService {
   // GET a book
   getBook(id: number): Observable<IBook> {
     return this.getBooks().pipe(
-      map(books => {
-        return books.find(book => book.id === id);
-      }),
-      tap(book => console.log("Getting book...")),
+      tap(_ => console.log("Getting book...")),
+      map(books => books.find(book => book.id === id)),
       catchError(this.handleError)
     );
   }

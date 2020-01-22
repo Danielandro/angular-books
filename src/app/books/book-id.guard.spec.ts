@@ -1,15 +1,15 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async, inject } from "@angular/core/testing";
 
-import { BookIdGuard } from './book-id.guard';
+import { ValidBookIdGuard } from "./valid-book-id.guard";
 
-describe('BookIdGuard', () => {
+describe("BookIdGuard", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BookIdGuard]
+      providers: [ValidBookIdGuard]
     });
   });
 
-  it('should ...', inject([BookIdGuard], (guard: BookIdGuard) => {
+  it("should ...", inject([ValidBookIdGuard], (guard: ValidBookIdGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

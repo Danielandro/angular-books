@@ -24,21 +24,27 @@ export class BookDetailComponent implements OnInit {
     // this.bookService.getBook(id).subscribe(book => (this.book = book));
 
     // USING OBSERVABLE
-    this.route.paramMap
-      .pipe(
-        // switchMap returns result of internal observable
-        switchMap(params => this.bookService.getBook(+params.get("id")))
-      ) // subscribing gives access to response from bookService observable
-      .subscribe(book => {
-        this.book = book;
-        this.pageTitle = `${book.title} Details`;
-      });
+    // this.route.paramMap
+    //   .pipe(
+    //     // switchMap returns result of internal observable
+    //     switchMap(params => this.bookService.getBook(+params.get("id")))
+    //   ) // subscribing gives access to response from bookService observable
+    //   .subscribe(book => {
+    //     this.book = book;
+    //     this.pageTitle = `${book.title} Details`;
+    //   });
 
     // Wrong way to do it - nested observables 😬
     // this.route.paramMap.subscribe(params => {
     //   let id = +params.get("id");
     //   this.bookService.getBook(id).subscribe(book => (this.book = book));
     // });
+
+    // using resolve guard
+    this.route.data.subscribe((data: { book: any }) => {
+      this.book = data.book;
+      this.pageTitle = `${data.book.title} Details`;
+    });
   }
   // take user to previous page
   goBack() {

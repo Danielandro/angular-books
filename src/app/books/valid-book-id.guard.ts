@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class BookIdGuard implements CanActivate {
+export class ValidBookIdGuard implements CanActivate {
   constructor(private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,

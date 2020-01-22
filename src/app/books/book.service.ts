@@ -18,8 +18,11 @@ export class BookService {
 
   // GET a book
   getBook(id: number): Observable<IBook> {
-    return this.http.get<IBook>(`${this.bookUrl}/${id}`).pipe(
-      tap(book => console.log(`Getting book: ${book.title}`)),
+    return this.getBooks().pipe(
+      map(books => {
+        return books.find(book => book.id === id);
+      }),
+      tap(book => console.log("Getting book...")),
       catchError(this.handleError)
     );
   }

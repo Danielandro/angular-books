@@ -1,34 +1,65 @@
-<h1>My Books</h1>
-<app-book-search
-  (searchInput)="onSearchInput($event)"
-  (searchByOption)="onSearchByOption($event)"
-></app-book-search>
-<!-- Form to add a new book -->
-<label
-  >Book Title:
-  <input type="text" #bookTitle aria-required="true" required />
-</label>
-<br />
-<label
-  >Author Name:
-  <input type="text" #authorName aria-required="true" required /> </label
-><br />
-<button
-  (click)="
-    add(bookTitle.value, authorName.value);
-    bookTitle.value = '';
-    authorName.value = ''
-  "
->
-  Add Book
-</button>
+<div class="main">
+  <nav id="navbar">
+    <header class="navbar__header">
+      <h1>My Books</h1>
+    </header>
+    <!-- Search form -->
+    <section class="navbar__book-search">
+      <app-book-search
+        (searchInput)="onSearchInput($event)"
+        (searchByOption)="onSearchByOption($event)"
+      >
+      </app-book-search>
+    </section>
 
-<div class="card">
-  <ul *ngFor="let book of filteredBooks" class="books list-group">
-    <a [routerLink]="['/books', book.id]">
-      <li class="book list-group-item">
-        {{ book.title | titlecase }} by {{ book.author | titlecase }}
-      </li>
-    </a>
-  </ul>
+    <!-- Add book form -->
+    <section class="navbar__book-add">
+      <h2 class="book-search__header">Add Book</h2>
+      <!-- title -->
+      <label for="search-title">Book Title: </label>
+      <input
+        id="search-title"
+        type="text"
+        #bookTitle
+        aria-required="true"
+        required
+        placeholder="title"
+      />
+      <br />
+      <!-- author -->
+      <label for="search-author">Author Name:</label>
+      <input
+        id="search-author"
+        type="text"
+        #authorName
+        aria-required="true"
+        required
+        placeholder="author"
+      />
+      <br />
+      <!-- add new book button -->
+      <button
+        (click)="
+          add(bookTitle.value, authorName.value);
+          bookTitle.value = '';
+          authorName.value = ''
+        "
+      >
+        Add Book
+      </button>
+    </section>
+  </nav>
+
+  <!-- List of books -->
+  <section class="book-list">
+    <div class="card book-list__cards">
+      <ul *ngFor="let book of filteredBooks" class="books list-group">
+        <a [routerLink]="['/books', book.id]">
+          <li class="book list-group-item">
+            {{ book.title | titlecase }} by {{ book.author | titlecase }}
+          </li>
+        </a>
+      </ul>
+    </div>
+  </section>
 </div>

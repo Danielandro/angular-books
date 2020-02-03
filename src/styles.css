@@ -1,6 +1,26 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
 
 html,
 body {
   background-color: #dbe8f9;
+  font-family: "Rubik", sans-serif;
+  height: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.1rem;
+  text-align: center;
+}
+
+label {
+  visibility: hidden;
+}
+
+a:visited {
+  text-decoration-color: none;
 }

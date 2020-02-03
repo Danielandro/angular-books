@@ -1,11 +1,25 @@
 <div class="book-search">
-  <label
-    >Book search:
-    <!-- Drop down to choose search option -->
-    <select #searchBy (change)="onSearchByChange(searchBy.value)">
-      <option value="title">by title</option>
-      <option value="author">by author</option>
-    </select>
-    <input (input)="onInput()" [(ngModel)]="term" type="text" />
-  </label>
+  <h2 class="book-search__header">Book Search</h2>
+  <label for="search">Book search:</label>
+  <!-- Drop down to choose search option -->
+  <select #searchBy (change)="onSearchByChange(searchBy.value)">
+    <option value="title">by title</option>
+    <option value="author">by author</option>
+  </select>
+  <input id="search" (input)="onInput()" [(ngModel)]="term" type="text" />
+  <i class="fa fa-search" aria-hidden="true"></i>
+</div>
+
+<div class="wrapper">
+  <div class="search-box">
+    <div class="search-box__dropdown">
+      <div class="search-box__dropdown--default-option">
+        by title
+      </div>
+      <ul>
+        <li>by title</li>
+        <li>by author</li>
+      </ul>
+    </div>
+  </div>
 </div>
